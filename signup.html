@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerWaves - Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="signup-box">
+            <div class="header">
+                <h2>Create Your Account</h2>
+                <p>Start your journey to mental wellness</p>
+            </div>
+
+            <form id="signupForm" class="signup-form">
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                    </div>
+                    <span class="error-text">Please enter your full name</span>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <span class="error-text">Please enter a valid email</span>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                    <span class="error-text">Please enter a valid phone number</span>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <span class="error-text">Password must be at least 8 characters</span>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <span class="error-text">Passwords do not match</span>
+                </div>
+
+                <div class="terms">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="signup-btn">Create Account</button>
+
+                <div class="social-signup">
+                    <p>Or sign up with</p>
+                    <div class="social-buttons">
+                        <button type="button" class="social-btn google">
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button type="button" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Log in</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="features-section">
+            <div class="feature">
+                <i class="fas fa-brain"></i>
+                <h3>Mental Wellness</h3>
+                <p>Access tools and resources for better mental health</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-heart"></i>
+                <h3>Community Support</h3>
+                <p>Connect with others on similar journeys</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-user-shield"></i>
+                <h3>Privacy First</h3>
+                <p>Your data is secure and confidential</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Registration Successful!</h3>
+            <p>Welcome to InnerWaves. Redirecting to login...</p>
+        </div>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>

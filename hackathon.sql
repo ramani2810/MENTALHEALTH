@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS login_cred;
+USE login_cred;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    reset_token VARCHAR(255) DEFAULT NULL,
+    otp INT DEFAULT NULL,
+    otp_expiry DATETIME DEFAULT NULL
+);

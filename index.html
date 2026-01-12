@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+</head>
+
+<body>
+    <div class="navbar">
+        
+
+        <div class="dropdown">
+            <button class="dropbtn">Classes</button>
+            <div class="dropdown-content">
+                <a href="classes.html">Music </a>
+                <a href="https://liforme.com/blogs/blog/17-yoga-poses-for-mental-health">Yoga</a>
+                <a href="https://www.mindful.org/how-to-meditate/">Meditation</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Health</button>
+            <div class="dropdown-content">
+                <a href="https://www.mentalhealth.org.uk/explore-mental-health/a-z-topics/diet-and-mental-health">Diet</a>
+                <a href="https://www.makemytrip.com/tripideas/relaxation-destinations">Peaceful places </a>
+                
+            </div>
+        
+        </div>
+        
+        <a href="game.html" class="dropbtn"><button>Game</button></a>
+        
+        <button class="toggle-button" onclick="toggleDarkMode()" >
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <script>
+            function toggleDarkMode() {
+                document.body.classList.toggle("dark-mode");
+                let isDark = document.body.classList.contains("dark-mode");
+                localStorage.setItem("darkMode", isDark);
+            }
+            
+            (function applyDarkMode() {
+                if (localStorage.getItem("darkMode") === "true") {
+                    document.body.classList.add("dark-mode");
+                }
+            })();
+        </script>
+       <a href="diary.html"> <button>My Diary</button></a>
+    <a href="signup.html"><button class="nav1">signup </button></a>
+      <a href="login.html">  <button class="nav1">Login </button></a>  
+        
+      <div class ="front">
+       
+            <h1><b>MENTAL HEALTH AND WELL-BEING</b></h1>
+        
+      </div>
+       
+        
+        <div class="slider">
+            <button class="btn left" onclick="changeSlide(-1)">&#9665;</button>
+            <div class="slide active">
+                
+              <img src="image2.png">
+              <p class="text-overlap">WELCOME TO INNERWAVES...<br>-FIND PEACE WITHIN- 
+                
+              </p>
+                <a href="https://virtualfriend.chat/ai-chat/online-friend?gad_source=1&gclid=CjwKCAiAn9a9BhBtEiwAbKg6foE_UWGY8C0CjYT_060n3N9KQa0HjwYidnbQKsKKjVLjddB7yGrLjBoCbcIQAvD_BwE" class="slider-button">+ Connect with people</a>
+            </div>
+            <div class="slide">
+                <img src="doc2.jpg"></img>
+                <p class="text-overlap" style ="color:#eef2f3">For  professional Help! <br> connect with doctors</p>
+                <a href="linkdin.html" class="slider-button">Consult Now!</a>
+            </div>
+            <div class="slide">
+                <image src="join.jpg"></image>
+                <p class="text-overlap">To join classes! <br> Follow us..</p>
+                  <a href="https://meet.google.com/ryr-ixgf-kgb" class="slider-button">Get Help</a>
+            </div> 
+            <button class="btn right" onclick="changeSlide(1)">&#9655;</button>
+        </div>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function changeSlide(direction) {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+    </script>
+    <br>
+    <br>
+       <br>
+      </div>
+      <br>
+      <br>
+        </div>
+        <h2>Track your mood:</h2>
+<br>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    body { font-family: Arial, sans-serif; background-color: #eef2f3; margin: 0; padding: 0; text-align: center; }
+    .container { padding: 20px; }
+    select, button { margin: 10px; padding: 10px; font-size: 16px; }
+    button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+    .chart-container { width: 80%; margin: auto; margin-top: 20px; height: 400px; }
+</style>
+<body>
+    <div class="container">
+        <select id="mood">
+            <option value="Happy">😊 Happy</option>
+            <option value="Angry">😡 Angry</option>
+            <option value="Sad">😢 Sad</option>
+            <option value="Excited">🤩 Excited</option>
+            <option value="Relaxed">😌 Relaxed</option>
+            <option value="Love">😍 Love</option>
+            <option value="Anxiety">😰 Anxiety</option>
+        </select>
+        <button id="saveMoodButton">Save</button>
+        <br>
+        
+        <button onclick="getTip()">Get Motivation</button>
+        <p id="tip"></p>
+        <button onclick="refreshTip()">Refresh Tip</button>
+        
+        <p id="moodResult"></p>
+
+        
+        <h2>Mood Tracker Chart</h2>
+        <div class="chart-container">
+            <canvas id="moodChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let moodHistory = JSON.parse(localStorage.getItem("moodHistory")) || [];
+
+            function saveMood() {
+                const mood = document.getElementById("mood").value;
+                const now = new Date();
+                const date = now.toLocaleDateString();
+                const hour = now.getHours();
+
+                // Store mood with hour
+                moodHistory.push({ date, hour, mood });
+                localStorage.setItem("moodHistory", JSON.stringify(moodHistory));
+
+                updateMoodChart();
+                alert(`Mood saved: ${mood} at ${hour}:00`);
+            }
+
+            function updateMoodChart() {
+                const ctx = document.getElementById("moodChart").getContext("2d");
+                const moods = ["Happy", "Angry", "Sad", "Excited", "Relaxed", "Love", "Anxiety"];
+                const hours = Array.from({ length: 24 }, (_, i) => `${i}:00`);
+
+                // Initialize mood counts for each hour
+                let moodData = {};
+                moods.forEach(mood => moodData[mood] = Array(24).fill(0));
+
+                const today = new Date().toLocaleDateString();
+                moodHistory.forEach(entry => {
+                    if (entry.date === today) {
+                        moodData[entry.mood][entry.hour] += 1;
+                    }
+                });
+
+                let datasets = moods.map((mood, index) => ({
+                    label: mood,
+                    data: moodData[mood],
+                    borderColor: ["green", "red", "blue", "orange", "purple", "pink", "gray"][index],
+                    fill: false
+                }));
+
+                if (window.moodChartInstance) {
+                    window.moodChartInstance.destroy();
+                }
+
+                window.moodChartInstance = new Chart(ctx, {
+                    type: "line",
+                    data: { labels: hours, datasets: datasets },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            document.getElementById("saveMoodButton").addEventListener("click", saveMood);
+            updateMoodChart();
+        });
+        </script>
+    
+<script>
+             const tips = {
+    happy: [
+        "Keep sharing your joy with others!",
+        "Happiness grows when shared!",
+        "Enjoy the moment and spread positivity!"
+    ],
+    angry: [
+    "For every minute you remain angry, you give up sixty seconds of peace",
+    "The greatest remedy for anger is delay.",
+    "Anger doesn't solve anything. It builds nothing, but it can destroy everything"
+    ],
+    
+    sad: [
+        "It's okay to feel down. Brighter days are ahead!",
+        "You are stronger than you think!",
+        "Take a deep breath, and let it go."
+    ],
+    excited: [
+        "Excitement is the spark that ignites the fire of achievement.",
+"When you are enthusiastic about what you do, you feel this positive energy. It's very simple.",
+"Don't let small minds convince you that your dreams are too big.",
+"Enjoy the little things, for one day you may look back and realize they were the big things." 
+    ],
+    relaxed: [
+    "Almost everything will work again if you unplug it for a few minutes… including you." ,
+"Within you, there is a stillness and a sanctuary to which you can retreat at any time." ,
+"Peace is always beautiful." 
+    ],
+    love: [
+    "Where there is love, there is life.",
+"Love is not about how many days, months, or years you have been together. It's about how much you love each other every single day.",
+"To love and be loved is to feel the sun from both sides."
+
+    ],
+
+    anxiety: [
+    "Worrying does not take away tomorrow's troubles, it takes away today's peace.",
+"You don't have to control your thoughts. You just have to stop letting them control you.",
+"Whatever happens, you can handle it." 
+    ],
+    
+};
+
+let lastTip = ""; // Store the last displayed tip globally
+
+function getTip() {
+    const mood = document.getElementById("mood").value.toLowerCase();
+    const tipElement = document.getElementById("tip");
+
+    if (mood && tips[mood]) {
+        lastTip = tips[mood][Math.floor(Math.random() * tips[mood].length)];
+        tipElement.textContent = lastTip;
+    } else {
+        tipElement.textContent = "Please select a mood to get a tip.";
+    }
+}
+
+function refreshTip() {
+    const mood = document.getElementById("mood").value.toLowerCase();
+    const tipElement = document.getElementById("tip");
+
+    if (mood && tips[mood]) {
+        let newTip;
+        if (tips[mood].length === 1) {
+            // If there's only one tip available, return the same tip
+            newTip = tips[mood][0];
+        } else {
+            // Ensure the new tip is different from the last one
+            do {
+                newTip = tips[mood][Math.floor(Math.random() * tips[mood].length)];
+            } while (newTip === lastTip);
+        }
+        lastTip = newTip;
+        tipElement.textContent = newTip;
+    } else {
+        tipElement.textContent = "Please select a mood first.";
+    }
+}
+
+           
+             function sendChat() {
+    let userMessage = document.getElementById("chatInput").value;
+    if (!userMessage.trim()) return;
+    
+    document.getElementById("chatResponse").innerText = "Thinking...";
+    
+    fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: userMessage }]
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("chatResponse").innerText = "AI: " + data.choices[0].message.content;
+    })
+    .catch(error => {
+        document.getElementById("chatResponse").innerText = "Error fetching response!";
+        console.error(error);
+    });
+}
+
+function closeChat() {
+    document.getElementById("chatBox").style.display = "none";
+}
+
+         </script>
+     
+    
+     
+
+    </div>
+  
+
+    <div class="chatgpt-container" id="chatBox">
+        <span class="close-btn" onclick="closeChat()">✖</span>
+        <h4>Chat with AI</h4>
+        <div class="chat-response" id="chatResponse"></div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Share how you're feeling...">
+            <button onclick="sendChat()">Send</button>
+        </div>
+    </div>
+    <script>
+
+        const mentalHealthBot = {
+            // Daily affirmations and motivational messages
+            affirmations: [
+                "You are stronger than you know, and it's okay to take things one day at a time.",
+                "Your feelings are valid, and you deserve to be heard and supported.",
+                "Every small step forward is progress worth celebrating.",
+                "You have the power to create positive changes in your life.",
+                "It's okay to prioritize your mental health and take care of yourself."
+            ],
+
+            // Self-care tips and strategies
+            selfCareTips: {
+                physical: [
+                    "Try some gentle stretching or yoga to release tension",
+                    "Take a few deep breaths - inhale for 4 counts, hold for 4, exhale for 4",
+                    "Go for a short walk, even if it's just around your room",
+                    "Drink a glass of water and notice how it makes you feel",
+                    "Practice progressive muscle relaxation, starting from your toes"
+                ],
+                mental: [
+                    "Take a 5-minute break from screens",
+                    "Write down three things you're grateful for",
+                    "Try a simple mindfulness exercise: focus on five things you can see",
+                    "Listen to calming music or nature sounds",
+                    "Set small, achievable goals for today"
+                ],
+                emotional: [
+                    "Write down your feelings without judgment",
+                    "Reach out to a friend or family member",
+                    "Practice self-compassion - treat yourself as you would a friend",
+                    "It's okay to say no and set boundaries",
+                    "Acknowledge your emotions without trying to change them"
+                ]
+            },
+
+            // Coping strategies for different situations
+            copingStrategies: {
+                stress: [
+                    "Break big tasks into smaller, manageable steps",
+                    "Try the 5-4-3-2-1 grounding technique",
+                    "Take a timeout for deep breathing",
+                    "Create a to-do list to organize your thoughts",
+                    "Practice mindful walking or movement"
+                ],
+                anxiety: [
+                    "Focus on your breath - try box breathing",
+                    "Name your anxious thoughts without engaging with them",
+                    "Ground yourself by feeling your feet on the floor",
+                    "Use positive self-talk: 'This feeling will pass'",
+                    "Try progressive muscle relaxation"
+                ],
+                sadness: [
+                    "Allow yourself to feel without judgment",
+                    "Engage in a creative activity you enjoy",
+                    "Connect with nature, even if just looking out a window",
+                    "Listen to uplifting music or podcasts",
+                    "Reach out to your support system"
+                ]
+            },
+
+            // Educational resources and explanations
+            mentalHealthEducation: {
+                mindfulness: [
+                    "Mindfulness means being present in the moment without judgment",
+                    "Start with short 1-minute mindfulness exercises",
+                    "Notice your thoughts without trying to change them",
+                    "Focus on your breath as an anchor to the present",
+                    "Practice mindful observation of your surroundings"
+                ],
+                stressManagement: [
+                    "Identify your stress triggers and patterns",
+                    "Create healthy boundaries in work and relationships",
+                    "Develop a regular sleep schedule",
+                    "Practice time management and prioritization",
+                    "Include regular physical activity in your routine"
+                ],
+                emotionalAwareness: [
+                    "Learn to identify and name your emotions",
+                    "Notice physical sensations associated with feelings",
+                    "Keep an emotion journal to track patterns",
+                    "Understand that all emotions are valid",
+                    "Practice expressing emotions in healthy ways"
+                ]
+            }
+        };
+
+        function sendChat() {
+            const userInput = document.getElementById("chatInput").value;
+            if (!userInput.trim()) return;
+
+            const chatBox = document.getElementById("chatBox");
+            const chatResponse = document.getElementById("chatResponse");
+
+            // Add user message
+            chatResponse.innerHTML += `<div class="message user-message">${userInput}</div>`;
+
+            // Clear input
+            document.getElementById("chatInput").value = "";
+
+            // Show typing indicator
+            chatResponse.innerHTML += `<div class="message ai-message typing-message">AI is typing...</div>`;
+
+            // Get appropriate response
+            let response = getEmotionalResponse(userInput);
+
+            // Remove typing indicator and add AI responses line by line
+            setTimeout(() => {
+                const typingMessage = chatResponse.querySelector(".typing-message");
+                if (typingMessage) {
+                    typingMessage.remove();
+                }
+                
+                // Function to type messages one by one
+                function typeMessages(messages, index = 0) {
+                    if (index < messages.length) {
+                        chatResponse.innerHTML += `<div class="message ai-message">${messages[index]}</div>`;
+                        chatResponse.scrollTop = chatResponse.scrollHeight;
+                        
+                        setTimeout(() => typeMessages(messages, index + 1), 1000);
+                    }
+                    
+                    // Add a random affirmation at the end of responses
+                    if (index === messages.length - 1 && Math.random() < 0.3) { // 30% chance
+                        setTimeout(() => {
+                            const affirmation = mentalHealthBot.affirmations[Math.floor(Math.random() * mentalHealthBot.affirmations.length)];
+                            chatResponse.innerHTML += `<div class="message ai-message"><em>${affirmation}</em></div>`;
+                            chatResponse.scrollTop = chatResponse.scrollHeight;
+                        }, 1000);
+                    }
+                }
+                
+                typeMessages(response);
+            }, 500);
+
+            // Scroll to bottom
+            chatResponse.scrollTop = chatResponse.scrollHeight;
+        }
+
+        function getEmotionalResponse(input) {
+            input = input.toLowerCase();
+            
+            // Check for mood-specific keywords
+            if (input.includes('happy') || input.includes('joy') || input.includes('excited')) {
+                return [
+                    "It's wonderful that you're feeling positive! Here are some ways to maintain this energy:",
+                    ...getRandomItems([
+                        "Share your joy with others - positivity is contagious!",
+                        "Write down what made you happy today in a gratitude journal",
+                        "Channel this energy into a creative activity you enjoy",
+                        "Use this positive mood to tackle something you've been wanting to do",
+                        "Take a moment to appreciate and celebrate this feeling"
+                    ], 3),
+                    ...getRandomItems(mentalHealthBot.selfCareTips.emotional, 2)
+                ];
+            }
+            
+            if (input.includes('angry') || input.includes('frustrated') || input.includes('mad')) {
+                return [
+                    "I understand you're feeling angry. Here are some healthy ways to process this emotion:",
+                    ...getRandomItems([
+                        "Take deep breaths - inhale for 4 counts, hold for 4, exhale for 4",
+                        "Try physical activity to release tension - even a short walk can help",
+                        "Write down your thoughts without judgment",
+                        "Count to 10 slowly before reacting",
+                        "Find a private space to safely express your emotions"
+                    ], 3),
+                    "Remember: It's okay to feel angry. The goal is to express it in healthy ways.",
+                    ...getRandomItems(mentalHealthBot.copingStrategies.stress, 2)
+                ];
+            }
+            
+            if (input.includes('sad') || input.includes('depressed') || input.includes('down')) {
+                return [
+                    "I hear that you're feeling down. Your feelings are valid, and you're not alone.",
+                    ...getRandomItems([
+                        "Try to get some sunlight or fresh air, even for a few minutes",
+                        "Listen to music that matches or gradually lifts your mood",
+                        "Reach out to a friend or family member you trust",
+                        "Practice self-compassion - treat yourself as you would a friend",
+                        "Do one small thing for yourself today, no matter how simple"
+                    ], 3),
+                    "If these feelings persist, please consider reaching out to a mental health professional.",
+                    ...getRandomItems(mentalHealthBot.copingStrategies.sadness, 2)
+                ];
+            }
+            
+            if (input.includes('anxious') || input.includes('worried') || input.includes('stressed')) {
+                return [
+                    "I understand you're feeling anxious. Let's try some grounding techniques:",
+                    "Try the 5-4-3-2-1 method:",
+                    "- Notice 5 things you can see",
+                    "- Notice 4 things you can touch",
+                    "- Notice 3 things you can hear",
+                    "- Notice 2 things you can smell",
+                    "- Notice 1 thing you can taste",
+                    ...getRandomItems(mentalHealthBot.copingStrategies.anxiety, 3)
+                ];
+            }
+            
+            if (input.includes('tired') || input.includes('exhausted') || input.includes('fatigue')) {
+                return [
+                    "I hear that you're feeling tired. Here are some gentle ways to care for yourself:",
+                    ...getRandomItems([
+                        "Give yourself permission to rest - it's essential for well-being",
+                        "Try some light stretching to energize your body",
+                        "Stay hydrated and consider a nutritious snack",
+                        "Take short breaks between tasks",
+                        "Consider a 10-minute power nap if possible"
+                    ], 3),
+                    ...getRandomItems(mentalHealthBot.selfCareTips.physical, 2)
+                ];
+            }
+            
+            if (input.includes('self-care') || input.includes('take care') || input.includes('feel better')) {
+                return [
+                    "Here are some self-care practices you might find helpful:",
+                    "Physical self-care:",
+                    ...getRandomItems(mentalHealthBot.selfCareTips.physical, 2),
+                    "Mental self-care:",
+                    ...getRandomItems(mentalHealthBot.selfCareTips.mental, 2),
+                    "Emotional self-care:",
+                    ...getRandomItems(mentalHealthBot.selfCareTips.emotional, 2)
+                ];
+            }
+            
+            if (input.includes('meditation') || input.includes('mindful') || input.includes('calm')) {
+                return [
+                    "Let's practice mindfulness together. Here are some techniques:",
+                    ...getRandomItems(mentalHealthBot.mentalHealthEducation.mindfulness, 3),
+                    "Remember to be patient with yourself as you practice.",
+                    ...getRandomItems(mentalHealthBot.selfCareTips.mental, 2)
+                ];
+            }
+            
+            // Check for greetings
+            if (input.match(/^(hi|hello|hey|greetings)/i)) {
+                return [
+                    "Hello! I'm here to support your mental well-being.",
+                    "You can share how you're feeling, and I'll provide:",
+                    "- Mood-specific coping strategies",
+                    "- Self-care suggestions",
+                    "- Mindfulness techniques",
+                    "- Emotional support",
+                    "How are you feeling today?"
+                ];
+            }
+
+            // Default supportive response
+            return [
+                "I'm here to listen and support you.",
+                "You can tell me about:",
+                "- Your current mood or emotions",
+                "- Any specific challenges you're facing",
+                "- What kind of support you need",
+                "- Or ask for self-care tips and coping strategies",
+                "How are you feeling right now?"
+            ];
+        }
+
+        function getRandomItems(array, count) {
+            const shuffled = array.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Add event listener for Enter key
+        document.getElementById("chatInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendChat();
+            }
+        });
+
+        function closeChat() {
+            const chatBox = document.getElementById("chatBox");
+            chatBox.style.display = "none";
+        }
+    </script>
+    
+
+            
+            <br>
+           
+                
+             
+              <br>
+            <div >
+                <h3 style="background-color: aqua;">Resources</h3>
+                <div class="video-container">
+                    <iframe 
+                    src="https://www.youtube.com/embed/EKEWk4oWmjY"
+                        allowfullscreen>
+                    </iframe>
+                    <br>
+                    <br>
+                    <br>
+    
+             <a href="https://www.healthline.com/health/depression/how-to-fight-depression">How to overcome depression</a>
+            <br>
+            <a href="https://www.pinerest.org/newsroom/articles/mental-health-awareness-blog/">Awareness</a>
+            </div>
+            </div>
+            <h2>feedback</h2>
+            
+            <textarea name="feedback" placeholder="share your concerns.."></textarea>
+            <button>Save</button>
+            <div style="background-color: azure;">Emergency contact 
+                    <br>
+                    To contact for immediate support for mental health services or to express your emotions call the following numbers:
+                    <u>+91 6547895203</u> (or) <u>+91 7956230314 </u>
+                </div>
+            
+           
+       
+
+
+    </div>
+
+</body>
+</html>

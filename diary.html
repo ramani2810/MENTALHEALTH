@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Journal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            background-image: url(journal.jpg);
+            background-image: repeating-linear-gradient(0);
+        }
+
+        .container {
+            width: 500px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        #calendar div {
+            padding: 10px;
+            text-align: center;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #calendar div:hover {
+            background-color: #b0b0b0;
+        }
+
+        #journal-entry {
+            margin-top: 30px;
+            display: none;
+        }
+
+        #journal-entry textarea {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calendar Journal</h1>
+        <div id="calendar"></div>
+        <div id="journal-entry" class="hidden">
+            <h2>Journal for <span id="selected-date"></span></h2>
+            <textarea id="journal-text" rows="10" placeholder="Write your journal here..."></textarea>
+            <button onclick="saveJournal()">Save Journal</button>
+            <button onclick="closeJournal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const date = new Date();
+            const currentMonth = date.getMonth();
+            const currentYear = date.getFullYear();
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+            const lastDateOfMonth = new Date(currentYear, currentMonth + 1, 0);
+            const daysInMonth = lastDateOfMonth.getDate();
+            const startDay = firstDayOfMonth.getDay();
+
+            calendar.innerHTML = '';
+
+            // Display the days of the week
+            const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            weekdays.forEach(day => {
+                const dayDiv = document.createElement('div');
+                dayDiv.innerText = day;
+                calendar.appendChild(dayDiv);
+            });
+
+            // Add empty divs for days before the 1st
+            for (let i = 0; i < startDay; i++) {
+                const emptyDiv = document.createElement('div');
+                calendar.appendChild(emptyDiv);
+            }
+
+            // Add the actual days of the month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.innerText = i;
+                dayDiv.onclick = () => openJournal(i, currentMonth + 1, currentYear);
+                calendar.appendChild(dayDiv);
+            }
+        }
+
+        function openJournal(day, month, year) {
+            const selectedDate = `${month}/${day}/${year}`;
+            document.getElementById('selected-date').innerText = selectedDate;
+            
+            // Get saved journal if any
+            const savedJournal = localStorage.getItem('journal-' + selectedDate);
+            if (savedJournal) {
+                document.getElementById('journal-text').value = savedJournal;
+            } else {
+                document.getElementById('journal-text').value = '';
+            }
+            
+            document.getElementById('journal-entry').style.display = 'block';
+        }
+
+        function saveJournal() {
+            const journalText = document.getElementById('journal-text').value;
+            const selectedDate = document.getElementById('selected-date').innerText;
+            if (journalText.trim()) {
+                localStorage.setItem('journal-' + selectedDate, journalText);
+                alert('Journal saved!');
+            } else {
+                alert('Please write something in your journal.');
+            }
+        }
+
+        function closeJournal() {
+            document.getElementById('journal-entry').style.display = 'none';
+        }
+
+        window.onload = function() {
+            generateCalendar();
+        };
+    </script>
+</body>
+</html>

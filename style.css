@@ -1,0 +1,562 @@
+body {
+    font-family: Arial;
+    background: url('m3.webp') no-repeat center center/cover;
+    height:90%;
+    margin: 0;  
+    text-align: center;  
+    background: linear-gradient(45deg); 
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+h1 {
+    background-color:white;
+    height: 70px;
+    text-align: center;   
+}
+h2{
+    text-align: center;   
+    background-color:black;
+    color:white;
+}
+
+
+textarea {
+    width: 90%;  
+    height: 150px; 
+    font-size: 16px; 
+    padding: 10px; 
+}
+
+
+
+
+
+.mood {
+    flex: 0 0 auto;
+ margin: 1px;
+   padding: 10px 20px ;
+    background:black;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.mood-bar button:nth-child(1) { background: #ffcc00;
+      } 
+.mood-bar button:nth-child(2) { background: #3498db;
+    } 
+.mood-bar button:nth-child(3) { background:red; } 
+.mood-bar button:nth-child(4) { background: #2ecc71; } 
+.mood-bar button:nth-child(5) { background: #9b59b6; } 
+.mood-bar button:nth-child(6) { background: #e84393; } 
+.mood-bar button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+.video-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+iframe {
+    width: 560px;
+    height: 315px;
+    border: none;
+    border-radius: 10px;
+}
+.info{
+    
+    background-color: #507b9a;
+    border-radius: 50px;
+}
+
+.navbar{
+    font-stretch: expanded;
+    text-align: center;
+    background-color: transparent;
+    justify-content: center;
+}
+.nav1{
+text-align: center;
+
+}
+.card{
+width: 100%;
+max-width: 600px;
+padding: 15px;
+position: relative;
+}
+.card::before,
+.card::after{
+content:'';
+position: absolute;
+top:0;
+left: 0;
+width: 100%;
+height: 100%;
+border-radius: 10px;
+}
+.card::before{
+z-index: 1;
+background-color: #ffffff;
+
+}
+.card-container{
+position: relative;
+z-index: 3;
+}
+.chatgpt-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    min-height: 200px;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.chatgpt-container h4 {
+    color: #2c3e50;
+    text-align: center;
+    margin: 15px 0 12px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 15px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.chat-response {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+.chat-response::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.chat-response::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-response::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-response::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.message {
+    margin: 8px 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    max-width: 85%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-size: 14px;
+    animation: fadeIn 0.3s ease;
+    clear: both;
+    display: block;
+}
+
+.user-message {
+    background-color: #1a73e8;
+    color: white;
+    float: right;
+    border-bottom-right-radius: 4px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.ai-message {
+    background-color: #f1f3f4;
+    color: #333;
+    float: left;
+    border-bottom-left-radius: 4px;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.typing-message {
+    color: #666;
+    font-style: italic;
+    float: left;
+    background-color: #f1f3f4;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 8px;
+    padding: 10px 15px;
+    border-top: 1px solid #eee;
+    background: white;
+    margin-top: auto;
+}
+
+.chat-input-container input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.chat-input-container input:focus {
+    outline: none;
+    border-color: #1a73e8;
+}
+
+.chat-input-container button {
+    padding: 8px 16px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.chat-input-container button:hover {
+    background-color: #1557b0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add styles for links in messages */
+.ai-message a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.ai-message a:hover {
+    text-decoration: underline;
+}
+
+/* Style for emphasized text (like affirmations) */
+.ai-message em {
+    color: #1a73e8;
+    font-style: italic;
+}
+
+/* List styles in messages */
+.ai-message ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.ai-message li {
+    margin: 3px 0;
+}
+
+.connect {
+display: flex;
+justify-content:space-between; 
+align-items: stretch;
+margin: 20px;
+}
+
+.box {
+width: 10%;
+padding: 10px;
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+border-radius: 10px;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+min-height: 150px;
+}
+.connect:hover{
+transform: scale3d(2px);
+}
+.doc{
+background-image: url(doc2.jpg);
+
+background-size: 100%; 
+ background-repeat: no-repeat;
+ border: 2px solid black;
+color:red;
+
+}
+
+/* Style the button */
+.dropbtn {
+    background-color: transparent;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Add arrow to dropdown buttons */
+.dropdown .dropbtn::after {
+    content: '▼';
+    display: inline-block;
+    margin-left: 8px;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow on hover */
+.dropdown:hover .dropbtn::after {
+    transform: rotate(180deg);
+}
+
+/* Style the dropdown container */
+.dropdown {
+position: relative;
+display: inline-block;
+margin-right: 10px;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Style the dropdown links */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Style regular nav buttons */
+.navbar button, .nav1 {
+    background-color: transparent;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.navbar button:hover, .nav1:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.image-container {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+
+.image-container img {
+width: 40%;
+max-width: 10px;
+border-radius: 10px;
+}
+.darkmode {
+background-color: #1e1e1e;
+color: white;
+}
+
+.darkmode .navbar {
+background-color: #333;
+}
+
+.darkmode .navbar button {
+background-color: #666;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+.slider {
+    position: relative;
+    width: 80%;
+    height: 60vh;
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color:rgb(196, 197, 186) ;
+}
+.active {
+    display: block;
+}
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #45a049 !important;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.btn:hover {
+    background-color: blue !important;
+}
+
+.left {
+    left: 10px;
+}
+.right {
+    right: 10px;
+}
+.slider-button {
+    position: absolute;
+    top: 70%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: blue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.slider-button:hover {
+    background: #45a049;
+}
+
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.text-overlap {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 800;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8),
+                 -2px -2px 8px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    width: 80%;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    animation: textFade 0.8s ease-in-out;
+}
+
+@keyframes textFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+body {
+    font-family: Arial, sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+.toggle-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* Ensure all elements are affected by dark mode */
+.dark-mode * {
+    background: #121212 !important;
+    color: #ffffff !important;
+}
+
+
+
+
